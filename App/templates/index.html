@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        {{ moment.include_moment() }}
+    <title>Title</title>
+</head>
+<body>
+{{ moment.lang('es') }}
+<p> the localhost and time is <span>{{ moment(current_time).format('LLLL') }}</span></p>
+<p> the localhost and time is {{ moment(current_time).fromNow(refresh=True) }}</p>
+{{ moment(current_time).fromNow(refresh=True) }}
+</body>
+</html>
