@@ -1,13 +1,18 @@
 from flask import Flask,Request,current_app,render_template,url_for,redirect,session,flash
-from flask.ext.bootstrap import Bootstrap
-from flask.ext.moment import Moment
+from flask_sqlalchemy import SQLAlchemy
+from flask_bootstrap import Bootstrap
+from flask_moment import Moment
 from datetime import datetime
-import config
+import config,os
 from Forms import NameForm
 app = Flask(__name__)
 app.config["SECRET_KEY"]=config.secret_key
 bootstrap=Bootstrap(app)
 moment=Moment(app)
+
+app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///'+os.path.join(config.basedir+'//data1.db')
+app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN']=True
+db=SQLAlchemy(app)
 
 from flask import request
 @app.route('/')
